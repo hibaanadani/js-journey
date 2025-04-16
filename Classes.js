@@ -1,4 +1,5 @@
 class BankAccount{
+    //time complexity is O(1) because we are just assigning values, not using loops
     constructor(ownerName,initialBalance){
         this.ownerName = ownerName;
         this.balance = initialBalance;
@@ -9,7 +10,7 @@ class BankAccount{
         }
         return this.history;
     }
-
+    //time complexity O(1) because we are just adding to the balance
     deposit(amount){
         if(amount > 0){
             this.balance += amount;
@@ -20,6 +21,7 @@ class BankAccount{
             console.log("Deposit amount must be positive.");
         }
     }
+    //time complexity O(1) because we are just subtracting from the balance, similar to deposit
     withdraw(amount){
         if(amount > 0 && amount <= this.balance){
             this.balance -= amount;
@@ -30,6 +32,7 @@ class BankAccount{
             console.log("Withdrawal amount must be positive and less than or equal to the balance.");
         }
     }
+    //O(1), calling previous O(1) deposit and withdraw methods
     TransferTo(anotherAccount, amount){
         if(amount > 0 && amount <= this.balance){
             this.withdraw(amount);
@@ -41,9 +44,11 @@ class BankAccount{
             console.log("Transfer amount must be positive and less than or equal to the balance.");
         }
     }
+    //O(1) because we are just returning a string
     getSummary(){
         return `${this.ownerName}'s balance is ${this.balance}`;
     }
+    //O(n) because we are using forEach to iterate over the history array
     printHistory(){
         console.log(`Transaction history for ${this.ownerName}:`);
         this.getHistory().forEach(transaction => {
@@ -51,3 +56,4 @@ class BankAccount{
         });
     }
 }
+//time complexity is O(n) because we have the printHistory method, but we would have O(1) if we did not call the getHistory method
