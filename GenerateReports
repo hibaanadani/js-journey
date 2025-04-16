@@ -3,7 +3,22 @@ function generateReports(student){
     return student.map(student => { 
         const totalScore = student.scores.reduce((sum, score) => sum + score, 0); // 2nd array method to get the total score of each student
         const average = Math.round(totalScore / student.scores.length); // 3rd array method to get the average score of each student rounded
-})
+
+        let grade; //using let instead of const because we are going to change the value of grade later on
+        if (average >= 90) {
+          grade = "A";
+        } else if (average >= 80) {
+          grade = "B";
+        } else if (average >= 70) {
+          grade = "C"; 
+        } else if (average >= 60) {
+          grade = "D";
+        } else {
+          grade = "F"; 
+        }
+
+        return { name: student.name, average, grade };//for return we use {} not ()
+});//add ; at the end 
 }
 const students = [
     { name: "Alice", scores: [90, 85, 92] },
