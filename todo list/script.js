@@ -14,4 +14,8 @@ function addTask() {
     
     taskList.appendChild(li); // Add task to the list
     taskInput.value = ""; // Clear input after adding the task
-    }
+    
+}
+//Add event listener to button
+addTaskButton.addEventListener("click", addTask);
+
